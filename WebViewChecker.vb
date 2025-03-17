@@ -1,13 +1,6 @@
 ﻿Imports WebView2.Runtime.AutoInstaller
 
 Public Class WebViewChecker
-    ' This is the temp directory to extract the WebView2 runtime installer
-    Private ReadOnly Property CustomPath As String
-        Get
-            Return $"{Environment.CurrentDirectory}\MicrosoftEdgeWebview2Setup.exe"
-        End Get
-    End Property
-
     ' Check and install WebView2 runtime if not installed
     Public Async Function CheckAndInstall() As Task(Of Boolean)
         Try
@@ -20,7 +13,7 @@ Public Class WebViewChecker
                 If result = DialogResult.Yes Then
                     ' If the user agrees, show the WebView2 runtime installer after downloading it
                     Await WebView2AutoInstaller.CheckAndInstallAsync(False, False)
-                    MessageBox.Show("WebView2 has been installed. Please restart the application.", "Installation Complete", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    MessageBox.Show("Please allow WebView2 to install and restart once it's completed.", "Installation Complete", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     Application.Exit()
                     Return False ' Return false to indicate that the app needs to be restarted
                 Else

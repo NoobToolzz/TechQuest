@@ -25,8 +25,10 @@ Partial Class ExamResults
         Label1 = New Label()
         lblResults = New Label()
         lblMessage = New Label()
-        Label2 = New Label()
+        lblInformClickButton = New Label()
         btnLeaderboard = New Button()
+        btnExit = New Button()
+        btnRetry = New Button()
         SuspendLayout()
         ' 
         ' Label1
@@ -57,15 +59,15 @@ Partial Class ExamResults
         lblMessage.Size = New Size(0, 28)
         lblMessage.TabIndex = 2
         ' 
-        ' Label2
+        ' lblInformClickButton
         ' 
-        Label2.AutoSize = True
-        Label2.Font = New Font("Comic Sans MS", 10F, FontStyle.Regular, GraphicsUnit.Point)
-        Label2.Location = New Point(12, 133)
-        Label2.Name = "Label2"
-        Label2.Size = New Size(440, 19)
-        Label2.TabIndex = 3
-        Label2.Text = "Click the button below to check out your score on the leaderboard!"
+        lblInformClickButton.AutoSize = True
+        lblInformClickButton.Font = New Font("Comic Sans MS", 10F, FontStyle.Regular, GraphicsUnit.Point)
+        lblInformClickButton.Location = New Point(12, 133)
+        lblInformClickButton.Name = "lblInformClickButton"
+        lblInformClickButton.Size = New Size(440, 19)
+        lblInformClickButton.TabIndex = 3
+        lblInformClickButton.Text = "Click the button below to check out your score on the leaderboard!"
         ' 
         ' btnLeaderboard
         ' 
@@ -77,16 +79,41 @@ Partial Class ExamResults
         btnLeaderboard.Text = "To the leaderboard!"
         btnLeaderboard.UseVisualStyleBackColor = True
         ' 
+        ' btnExit
+        ' 
+        btnExit.Font = New Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point)
+        btnExit.Location = New Point(396, 165)
+        btnExit.Name = "btnExit"
+        btnExit.Size = New Size(42, 38)
+        btnExit.TabIndex = 5
+        btnExit.Text = "⟳"
+        btnExit.UseVisualStyleBackColor = True
+        btnExit.Visible = False
+        ' 
+        ' btnRetry
+        ' 
+        btnRetry.Font = New Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point)
+        btnRetry.Location = New Point(348, 165)
+        btnRetry.Name = "btnRetry"
+        btnRetry.Size = New Size(42, 38)
+        btnRetry.TabIndex = 6
+        btnRetry.Text = CStr(ChrW(9211))
+        btnRetry.UseVisualStyleBackColor = True
+        btnRetry.Visible = False
+        ' 
         ' ExamResults
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(450, 215)
+        Controls.Add(btnRetry)
+        Controls.Add(btnExit)
         Controls.Add(btnLeaderboard)
-        Controls.Add(Label2)
+        Controls.Add(lblInformClickButton)
         Controls.Add(lblMessage)
         Controls.Add(lblResults)
         Controls.Add(Label1)
+        MaximizeBox = False
         Name = "ExamResults"
         Text = "Results"
         ResumeLayout(False)
@@ -96,6 +123,8 @@ Partial Class ExamResults
     Friend WithEvents Label1 As Label
     Friend WithEvents lblResults As Label
     Friend WithEvents lblMessage As Label
-    Friend WithEvents Label2 As Label
+    Friend WithEvents lblInformClickButton As Label
     Friend WithEvents btnLeaderboard As Button
+    Friend WithEvents btnExit As Button
+    Friend WithEvents btnRetry As Button
 End Class

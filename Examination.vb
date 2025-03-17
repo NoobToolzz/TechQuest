@@ -38,6 +38,13 @@
         LoadQuestion(currentQuestionIndex)
     End Sub
 
+    Private Sub Label_MouseHover(sender As Object, e As EventArgs) Handles lblAnswerA.MouseEnter, lblAnswerB.MouseEnter, lblAnswerC.MouseEnter, lblAnswerD.MouseEnter, lblAnswerA.MouseLeave, lblAnswerB.MouseLeave, lblAnswerC.MouseLeave, lblAnswerD.MouseLeave
+        ' Change the cursor to a hand when hovering over the answer labels, and back to default when leaving
+        If TypeOf e Is MouseEventArgs AndAlso DirectCast(e, MouseEventArgs).Button = MouseButtons.None Then
+            Cursor = If(sender Is lblAnswerA OrElse sender Is lblAnswerB OrElse sender Is lblAnswerC OrElse sender Is lblAnswerD, Cursors.Hand, Cursors.Default)
+        End If
+    End Sub
+
     Private Sub LoadQuestion(index As Integer)
         Dim question As Question = questions(index)
         lblQuestion.Text = question.Text
@@ -92,7 +99,6 @@
         If selectedIndex = question.CorrectAnswerIndex Then
             ' If the answer is correct, highlight it in green
             DirectCast(Me.Controls($"lblAnswer{Chr(65 + selectedIndex)}"), Label).ForeColor = Color.Green
-            correctQuestions += 1
             correctAnswersList.Add(question.Answers(question.CorrectAnswerIndex))
         Else
             ' If the answer is incorrect, highlight the selected answer in red and the correct answer in green
@@ -108,12 +114,9 @@
             lblStatus.Text = $"Logged in as: {welcome.userName} | Question {currentQuestionIndex + 1}/{questions.Length}"
             Timer1.Start() ' Wait 1 second before loading the next question
         Else
-            ' When all questions are answered, show the results
-            MsgBox($"You got {correctQuestions} out of {questions.Length} questions correct!", MsgBoxStyle.Information, "Results")
-            ' Hide the Examination form
+            ' Hide the Examination and show the post-exam form
             Me.Hide()
 
-            ' Show the End form
             Dim resultsForm As New ExamResults()
             resultsForm.Show()
         End If

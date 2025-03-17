@@ -81,12 +81,30 @@
         server.Start("resultPage", htmlText, leaderboardHtmlText)
 
         Dim webViewForm As New WebViewForm("http://localhost:8081/")
-        'AddHandler webViewForm.FormClosing, AddressOf WebView_FormClosing
+        AddHandler webViewForm.FormClosing, AddressOf WebView_FormClosing
         webViewForm.Show()
     End Sub
 
     Private Sub WebView_FormClosing(sender As Object, e As FormClosingEventArgs)
-        'lblInstructs.Text = "Before we begin, please enter your name:"
-        'btnInstructions.Visible = False : txtUsername.Visible = True
+        lblInformClickButton.Text = "You may now exit, or retry the exam."
+        btnLeaderboard.Visible = False : btnRetry.Visible = True : btnExit.Visible = True
+
+        server.Stop()
+    End Sub
+
+    Private Sub btnRetry_Click(sender As Object, e As EventArgs) Handles btnRetry.Click
+        Application.Exit()
+    End Sub
+
+    Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
+        ' Reset all necessary variables and states
+        Examination.correctAnswersList.Clear()
+        Examination.selectedAnswersList.Clear()
+        Examination.correctQuestions = 0
+
+        ' Close the current form and open the Welcome form
+        Me.Close()
+        Dim welcomeForm As New welcome()
+        welcomeForm.Show()
     End Sub
 End Class
