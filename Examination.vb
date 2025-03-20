@@ -38,11 +38,12 @@
         LoadQuestion(currentQuestionIndex)
     End Sub
 
-    Private Sub Label_MouseHover(sender As Object, e As EventArgs) Handles lblAnswerA.MouseEnter, lblAnswerB.MouseEnter, lblAnswerC.MouseEnter, lblAnswerD.MouseEnter, lblAnswerA.MouseLeave, lblAnswerB.MouseLeave, lblAnswerC.MouseLeave, lblAnswerD.MouseLeave
-        ' Change the cursor to a hand when hovering over the answer labels, and back to default when leaving
-        If TypeOf e Is MouseEventArgs AndAlso DirectCast(e, MouseEventArgs).Button = MouseButtons.None Then
-            Cursor = If(sender Is lblAnswerA OrElse sender Is lblAnswerB OrElse sender Is lblAnswerC OrElse sender Is lblAnswerD, Cursors.Hand, Cursors.Default)
-        End If
+    ' Implementation for changing cursors upon label hovering of answers
+    Private Sub Label_MouseEnter(sender As Object, e As EventArgs) Handles lblAnswerA.MouseEnter, lblAnswerB.MouseEnter, lblAnswerC.MouseEnter, lblAnswerD.MouseEnter
+        Cursor = Cursors.Hand
+    End Sub
+    Private Sub Label_MouseLeave(sender As Object, e As EventArgs) Handles lblAnswerA.MouseLeave, lblAnswerB.MouseLeave, lblAnswerC.MouseLeave, lblAnswerD.MouseLeave
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub LoadQuestion(index As Integer)
@@ -99,7 +100,7 @@
         If selectedIndex = question.CorrectAnswerIndex Then
             ' If the answer is correct, highlight it in green
             DirectCast(Me.Controls($"lblAnswer{Chr(65 + selectedIndex)}"), Label).ForeColor = Color.Green
-            correctAnswersList.Add(question.Answers(question.CorrectAnswerIndex))
+            correctQuestions += 1 : correctAnswersList.Add(question.Answers(question.CorrectAnswerIndex))
         Else
             ' If the answer is incorrect, highlight the selected answer in red and the correct answer in green
             DirectCast(Me.Controls($"lblAnswer{Chr(65 + selectedIndex)}"), Label).ForeColor = Color.Red
