@@ -23,8 +23,15 @@
         Dim fakeUsernames As String() = {
             "EpicGamer123", "NoobSlayer", "SniperWolf", "ShadowHunter", "DragonFury",
             "NinjaWarrior", "GhostRider", "ThunderStrike", "VortexViper", "PixelProwler",
-            "StealthAssassin", "FrostByte", "CyberKnight", "BlazeStorm", "RogueAgent"
+            "StealthAssassin", "FrostByte", "CyberKnight", "BlazeStorm", "RogueAgent",
+            "WarriorWolf", "PhantomFury", "RavenFlare", "CyberPhantom", "StealthVortex",
+            "TitanShadow", "BlazeHawk", "PixelStorm", "CrimsonNinja", "FrostPhantom",
+            "MysticHunter", "NovaStrike", "DragonClaw", "ShadowRogue", "EagleFrost",
+            "CrypticKnight", "InfernoBlaze", "ViperGhost", "TurboSniper", "ArcticAssassin",
+            "DarkRider", "ElectricVortex", "ThunderClaw", "PixelDagger", "NinjaBlizzard",
+            "GhostHunter", "FlameByte", "StormBreaker", "VoidCrusher"
         }
+
 
         ' Generate 14 unique fake names and random scores
         Dim usedNames As New HashSet(Of String)()
